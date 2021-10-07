@@ -1,0 +1,19 @@
+<div class="mt-6">
+    <div class="max-w-4xl px-10 py-6 mx-auto bg-white rounded-lg shadow-md">
+        <div class="flex items-center justify-between"><span class="font-light text-gray-600">{{category.created_date}}</span><a href="#"
+                class="px-2 py-1 font-bold text-gray-100 bg-gray-600 rounded hover:bg-gray-500">{{category.category_name}}</a>
+        </div>
+        <div class="mt-2"><a href="{% url 'category_detail' category.pk %}"
+                class="text-2xl font-bold text-gray-700 hover:underline">{{category.category_title}}</a>
+            <p class="mt-2 text-gray-600">{{category.category_description}}</p>
+        </div>
+        <div class="flex items-center justify-between mt-4"><a href="{% url 'category_detail' category.pk %}"
+                class="text-blue-500 hover:underline"> View Category</a>
+            <div><a href="{% url 'category_detail' category.pk %}" class="flex items-center"><img
+                        src="{{category.category_image}}"
+                        alt="avatar" class="hidden object-cover w-10 h-10 mx-4 rounded-full sm:block">
+                    <h1 class="font-bold text-gray-700 hover:underline">{{category.category_name}}</h1>
+                </a></div>
+        </div>
+    </div>
+</div>

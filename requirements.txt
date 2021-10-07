@@ -1,0 +1,3 @@
+https://tailwindcomponents.com/component/a-single-blog-detail-page
+pip django-admin-tailwind
+pip django-ckeditor

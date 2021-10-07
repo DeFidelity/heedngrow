@@ -1,0 +1,17 @@
+<form method="GET" action="{% url 'tag'%}">
+    <input name="tag_query" value="{{tag}}" type="text" class="px-4 py-2 text-gray-500 bg-white border border-gray-300 rounded-md sm:mx-2 dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring" placeholder="Explore Tags">
+    <button type="submit" class="px-4 py-2 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-200 transform bg-purple-700 rounded-md sm:mx-2 hover:bg-purple-500 focus:outline-none focus:bg-purple-600">
+        Search for a Tag
+    </button>
+    {% for message in messages %}
+        <p class="text-sm mt-4 text-green-500 text-center">{{message}}</p>
+    {% endfor %}
+    {% for field in form %}
+        {% for error in field.errors %}
+        <p class="text-sm text-red-500 text-center">{{field.label}}: {{error}}</p>
+        {% endfor %}
+    {% endfor %}
+    {% for error in form.non_field_errors %}
+    <p class="text-sm text-red-500 text-center">Submission error: {{error}}</p>
+    {% endfor %}
+</form>

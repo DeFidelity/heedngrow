@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+    <script src="https://unpkg.com/htmx.org@1.6.0"></script>
+    <meta charset="utf-8">
+    <title>HeednGrow</title>
+  </head>
+  <body>
+    <header class="h-24 sm:h-32 flex items-center z-30 w-full">
+        <div class="container mx-auto px-6 flex items-center justify-between">
+            <div class="uppercase text-gray-800 dark:text-white font-black text-3xl">
+              <a href="{% url 'home_page' %}">HeednGrow</a>
+            </div>
+            {% include "blog/partials/search_bar.html" %}
+            <div class="flex items-center">
+                <nav class="font-sen text-gray-800 dark:text-white uppercase text-lg lg:flex items-center hidden">
+                    <a href="#" class="py-2 px-6 flex">
+                        All
+                    </a>
+                    <a href="#category" class="py-2 px-6 flex">
+                        Categories
+                    </a>
+                    <a href="#posts" class="py-2 px-6 flex">
+                        Posts
+                    </a>
+                    <a href="#comments" class="py-2 px-6 flex">
+                        Comments
+                    </a>
+                    <a href="#profiles" class="py-2 px-6 flex">
+                        Author Profiles
+                    </a>
+                </nav>
+                <button class="lg:hidden flex flex-col ml-4">
+                    <span class="w-6 h-1 bg-gray-800 dark:bg-white mb-1">
+                    </span>
+                    <span class="w-6 h-1 bg-gray-800 dark:bg-white mb-1">
+                    </span>
+                    <span class="w-6 h-1 bg-gray-800 dark:bg-white mb-1">
+                    </span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+{% if profiles %}
+  <section id="profiles" class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-4 py-12">
+    <div class="w-full text-center pb-8">
+        <h1 class="font-bold text-3xl md:text-4xl lg:text-5xl font-heading text-gray-900 pb-2">
+              Profiles matching your search:
+        </h1>
+      </div>
+    <div class="w-full grid grid-cols-1 search-results md:grid-cols-2 gap-6">
+      {% for profile in profiles %}
+          {% include "blog/search/profile_search.html" %}
+      {% endfor %}
+    </div>
+  </section>
+  {% else %}
+  <p class="text-center font-medium text-gray-700 m-auto">No Profile matches your search</p>
+{% endif %}
+
+
+{% if categories %}
+  <section id="category" class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-4 py-12">
+    <div class="w-full text-center pb-8">
+        <h1 class="font-thin text-3xl md:text-4xl lg:text-5xl font-heading text-gray-900 pb-2">
+              Categories matching your search:
+        </h1>
+      </div>
+    <div class="items-center justify-between mt-4">
+  {% for category in categories %}
+      {% include "blog/search/categories.html" %}
+  {% endfor %}
+    </div>
+  </section>
+{% else %}
+    <p class="text-center font-medium text-gray-700 m-auto">No Category matches your search</p>
+{% endif %}
+
+{% if posts %}
+  <section id="posts" class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-4 py-12">
+    <div class="w-full text-center pb-8 search-results">
+        <h1 class="font-thin text-3xl md:text-4xl lg:text-5xl font-heading text-gray-900 pb-2">
+              Posts matching your search:
+        </h1>
+      </div>
+    <div class=" items-center justify-between mt-4">
+      {% for post in posts %}
+      {% include "blog/search/posts_search.html" %}
+      {% endfor %}
+    </div>
+  </section>
+{% else %}
+    <p class="text-center font-medium text-gray-700 m-auto">No Post matches your search</p>
+{% endif %}
+
+
+{% if comment %}
+<section id="comments" class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-4 py-12">
+<div class="max-w-4xl px-10 py-16 search-results mx-auto bg-gray-100 min-w-screen animation-fade animation-delay  px-0 px-8 mx-auto sm:px-12 xl:px-5">
+    <h1 class="font-thin text-3xl md:text-4xl lg:text-5xl font-heading text-gray-900 pb-2">
+        Comments matching your search:
+    </h1>
+  {% for comment in comments %}
+    {% include "blog/search/comment_search.html" %}
+  {% endfor %}
+</div>
+</section>
+{% else %}
+  <p class="text-center font-medium text-gray-700 m-auto">No Comment matches your search</p>
+{% endif %}
+
+  </body>
+</html>

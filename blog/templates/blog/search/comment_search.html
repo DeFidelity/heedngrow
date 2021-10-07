@@ -1,0 +1,8 @@
+<a href="{% url 'blog_detail' comment.post.pk %}" class="flex items-center mt-6 mb-6 mr-6">
+<img src="{{comment.avi}}" alt="avatar" class="hidden object-cover w-14 h-14 mx-4 rounded-full sm:block">
+<div><h3 class="text-lg font-bold text-purple-500 sm:text-xl md:text-2xl">By: {{comment.author}}</h3>
+    <p class="text-sm font-bold text-gray-600">{{comment.created_date|timesince}} ago</p>
+    <p class="mt-2 pb-3 text-base border-b border-gray-400 text-gray-600 sm:text-lg md:text-normal">
+     {{comment.body}}</p>
+</div>
+</a>

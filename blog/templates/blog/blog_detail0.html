@@ -1,0 +1,60 @@
+{% extends "shop/base.html" %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block extra_style %}
+<link rel="stylesheet" href="{% static 'css/extra_style.css' %}">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+{% endblock extra_style %}
+
+{% block content %}
+<section class="post">
+  <h3 class="description">Read about: <strong>{{ post.title }}</strong></h3>
+  <small>Written {{ post.time_created|timesince }} ago</small>
+
+  {{ post.body | safe }}
+
+  <h3 class="thanks">Thanks for viewing!</h3>
+
+<br>
+<hr>
+<p>People's thought on this post</p>
+<hr>
+  {% for comment in comments %}
+<hr>
+  <div class="row">
+    <div class="col-md-8">
+    <div class="media g-mb-30 media-comment">
+      <div class="media-body u-shadow-v18 g-bg-secondary g-pa-30">
+          <div class="g-mb-15">
+            <h5 class="h5 g-color-gray-dark-v1 mb-0">{{ comment.comment_author }}</h5>
+            <span class="g-color-gray-dark-v4 g-font-size-12">{{ comment.created_time|timesince }} ago</span>
+          </div>
+          <p>{{comment.comment_body}}</p>
+        </div>
+    </div>
+</div>
+{% empty %}
+Such an empty space!!!
+<p>Be the first person to share views! Use the box below.</p>
+
+{% endfor %}
+
+<br>
+<hr>
+<h4>Add New Comment </h4>
+  <form method="POST">
+      {% csrf_token %}
+      {{ form|crispy }}
+      <div class="d-grid gap-2">
+        <button class="btn mt-3 primaryAction"  name="button">Share Tought!</button>
+      </div>
+    </form>
+    <hr>
+</section>
+<!-- FEATURED BLOGS -->
+{% include "shop/featured_blog.html" %}
+
+<!-- FEATURED PRODUCTS -->
+{% include "shop/products.html" %}
+
+{% endblock content %}
