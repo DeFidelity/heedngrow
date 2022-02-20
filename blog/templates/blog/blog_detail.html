@@ -10,8 +10,11 @@
 <section class="post">
   <h3 class="description">Read about: <strong>{{ post.title }}</strong></h3>
   <small>Written {{ post.time_created|timesince }} ago</small>
+  <div class="prose">
 
   {{ post.body | safe }}
+
+  </div>
 
   <h3 class="thanks">Thanks for viewing!</h3>
 
