@@ -1,8 +1,11 @@
 # heedngrow
 A complex Django Blog project.
 
+![Screenshot 2022-02-20 080815](https://user-images.githubusercontent.com/68183305/154832688-411c69fb-15bd-47fe-b14e-60305336da59.png)
+
 ## Description
 This project is aimed at building a very standard blog and the aim was really archived, this project navigate through the whole crud of a thing and contains almost everything a blog site requires, it was build as my very first independent site, and it's really what makes me move.
+![team](https://user-images.githubusercontent.com/68183305/154832701-028a4afc-c52f-4995-b227-450f7c469f5c.png)
 
 ## Language, Framework, and Libraries
 
@@ -25,6 +28,7 @@ This project is aimed at building a very standard blog and the aim was really ar
 - Category List
 - Category details
 - and lot more pages which can be found in the views.py
+![contact](https://user-images.githubusercontent.com/68183305/154832728-18889122-3709-4114-a1cc-47b17df95190.png)
 
 ## Technology pattern
 
@@ -46,6 +50,9 @@ However on the front end, djangos' built it template engine was used and HTMX ha
 The small Java Script that was sprinkle on this project is mainly to toggle comment replies and provide the form to user.
 While tailwind CSS (CDN) was used to handle all the styllings and other necessary UIs, however the site does it's work really well, but since I'm not that verse in designs the UI might not look it's best but all the specified functionalities runs to their best.
 
+![mobileview](https://user-images.githubusercontent.com/68183305/154832767-ab7896e1-9f44-4034-a613-5ade4e1423a1.png)
+
+
 ## Installations
 
 This project can be cloned to your local system from the command linee or you download it as zip after which all the requirement to run the project is just having Python and Django installed on your local machine.
@@ -53,6 +60,9 @@ This project can be cloned to your local system from the command linee or you do
 ## Take on
 
 The best thing I took from this project after it's completion is confidence, the level of my skill boosted and I'm pretty confident that I've got the real and basic understanding of Django from work.
+![related post](https://user-images.githubusercontent.com/68183305/154832873-b4903794-b156-4abc-8122-99d237edd7ed.png)
 
 ## Errors
 I didn't know how to use GitHub effectively at the time of this project and my aim and believe was just that I need to push to GitHub whenever I'm done with a project, I wish my instructors mentioned GitHub when I was learning from them, I would have love to see all my trials and errors display all over, but never the less I'm still happy about the project.
+![bloglist](https://user-images.githubusercontent.com/68183305/154832882-96a1704d-8e05-4fbb-a3bb-31f44eb5aced.png)
+
