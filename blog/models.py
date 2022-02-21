@@ -81,12 +81,12 @@ class Profile(models.Model):
     proffession = models.CharField(max_length=150,null=True,blank=True,default='Writter')
     bio = models.CharField(max_length=300, null=True,blank=True)
 
-    def num_of_post(self):
+    def num_of_post(self,user):
         posts = Post.objects.filter(author=user).all()
         n = len(posts)
         return n
 
-    def posts(self):
+    def posts(self,user):
         posts = Post.objects.filter(author=user).all()
         return posts
 
