@@ -1,2 +1,5 @@
 django-jazzmin
 django-ckeditor
+django-storages
+boto3
+django-autoslug
