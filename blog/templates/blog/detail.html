@@ -1,4 +1,21 @@
 {% extends "blog/base.html" %}
+{% block head %}
+<meta name="description" property="og:description" content="{{post.description}}">
+<meta name="keywords" content="{{post.keywords}}">
+<meta name="author" content="{{post.author}}">
+
+<meta property="og:url" content="{% url 'post.get_absolute_url' %}" />
+<meta property="og:title" content="{{post.title}}" />
+<meta property="og:image" content="{{post.image}}" />
+<meta property="og:image:alt" content="image describing {{post.title}}" />
+
+<meta name="twitter:image" content="{{post.image}}" />
+<meta property="twitter:image:alt" content="{{post.title}}" />
+<meta name="twitter:card" content="{{post.image}}" />
+<meta name="twitter:site" content="@HeednGrow" />
+
+{% endblock head %}
+{% block title %}<title>{{post.title}}</title>{% endblock title %}
 {% block content %}
 <!--  component -->
 <div class="mt-6 bg-gray-50">

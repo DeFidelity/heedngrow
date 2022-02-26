@@ -8,7 +8,7 @@ from .views import (IndexView,BlogList,BlogDetail,
 urlpatterns=[
     path('',IndexView.as_view(),name='home_page'),
     path('blogs/all/',BlogList.as_view(),name='blog_list'),
-    path('blog/detail/<int:pk>/',BlogDetail.as_view(),name='blog_detail'),
+    path('blog/detail/<slug:slug>/',BlogDetail.as_view(),name='blog_detail'),
     path('blog/<int:pk>/comment/',CommentView.as_view(),name='comments'),
     path('blog/<int:pk>/comment/edit/',CommentEditView.as_view(),name='comment_edit'),
     path('p/<int:post_pk>/comment/<int:pk>reply/',CommentReplyView.as_view(),name='comment_reply'),

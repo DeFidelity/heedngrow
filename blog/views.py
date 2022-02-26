@@ -1,4 +1,4 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import get_object_or_404, render,redirect
 from django.views import View
 from django.db.models import Q
 from .models import Post,Comment,NewsLetter,AboutUs,Tags,Categories,Profile,Contact
@@ -37,8 +37,9 @@ class  BlogList(View):
         return render(request,'blog/blog_list.html',context)
 
 class BlogDetail(View):
-    def get(self,request,pk,*args,**kwargs):
-        post = Post.objects.get(pk=pk)
+    def get(self,request,slug,*args,**kwargs):
+        # post = get_object_or_404(Post,slug=slug)
+        post = Post.objects.get(slug=slug)
         comment = Comment.objects.filter(post=post)
         related_posts = Post.objects.all()[:6]
 

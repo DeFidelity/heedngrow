@@ -1,4 +1,22 @@
 {% extends "blog/base.html" %}
+
+{% block head %}
+<meta name="description" property="og:description" content="A page where we give short description about our services and everything you might be willing to know about us.">
+<meta name="keywords" content="about, heedngrow, heed, grow, heedandgrow">
+<meta name="author" content="HeednGrow">
+
+<meta property="og:url" content="{% url 'about' %}" />
+<meta property="og:title" content="About Us" />
+<meta property="og:image" content="https://janowski.dev/static/cover.png" />
+<meta property="og:image:alt" content="HeednGrow OG logo" />
+
+<meta name="twitter:image" content="https//example.com/image.png" />
+<meta property="twitter:image:alt" content="HeednGrow OG logo" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@HeednGrow" />
+
+{% endblock head %}
+{% block title %}<title>About Us</title>{% endblock title %}
 {% block content %}
 
 <div class="text-center justify-center py-8 border border-purple-200 bg-gray-800">

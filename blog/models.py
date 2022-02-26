@@ -2,6 +2,7 @@ from enum import unique
 from tkinter import N
 from django.db import models
 from django.contrib.auth.models import User
+from django.urls import reverse
 from django.utils import timezone
 from ckeditor.fields import RichTextField
 from django.db.models.signals import post_save
@@ -11,14 +12,19 @@ from django.dispatch import receiver
 
 class Post(models.Model):
     author = models.ForeignKey(User,on_delete=models.CASCADE)
+    description = models.TextField()
     title = models.CharField(max_length=200)
     created_date = models.DateTimeField(blank=True,default=timezone.now)
     body = RichTextField()
-    category = models.ManyToManyField('Categories',blank=True,null=True)
-    image = models.ImageField(upload_to='media/posts/',null=True)
-    tags = models.ManyToManyField('Tags',blank=False,related_name='tags')
+    category = models.ManyToManyField('Categories',blank=True)
+    image = models.ImageField(upload_to='media/posts/',blank=True,null=True)
+    tags = models.ManyToManyField('Tags',blank=True,related_name='tags')
     likes = models.ManyToManyField(User,blank=True,related_name='likes')
-    slug = AutoSlugField(populate_from='title',default="okayys")
+    slug = AutoSlugField(populate_from='title',unique=True)
+    updated = models.DateTimeField(auto_now_add=True)
+    
+    def get_absolute_url(self):
+        return reverse('blog_detail',args=[self.slug])
 
     class Meta:
         ordering =['-created_date']
@@ -33,19 +39,18 @@ class Categories(models.Model):
     category_description = models.TextField()
     created_date = models.DateTimeField(default=timezone.now)
     category_image = models.ImageField(upload_to='media/category/',null=True)
-    slug = AutoSlugField(populate_from='category_name',default="this_one")
-
+    updated = models.DateTimeField(auto_now_add=True)
     class Meta:
         ordering =['created_date']
 
+    def get_absolute_url(self):
+        return reverse('category_detail',args=[self.category_name])
     def __str__(self):
         return self.category_name
 
 class Tags(models.Model):
     tag_name = models.CharField(max_length=50)
     created_date = models.DateTimeField(default=timezone.now)
-    slug = AutoSlugField(populate_from='tag_name',default="this_tag")
-
     def __str__(self):
         return self.tag_name
 
@@ -88,12 +93,17 @@ class Profile(models.Model):
     avi = models.ImageField(upload_to="media/profile/",null=True)
     proffession = models.CharField(max_length=150,null=True,blank=True,default='Writter')
     bio = models.CharField(max_length=300, null=True,blank=True)
+    updated = models.DateTimeField(auto_now_add=True)
 
     def num_of_post(self,user):
         posts = Post.objects.filter(author=user).all()
         n = len(posts)
         return n
 
+    def get_absolute_url(self):
+        return reverse('profile',args=[self.user])
+        
+        
     def posts(self,user):
         posts = Post.objects.filter(author=user).all()
         return posts

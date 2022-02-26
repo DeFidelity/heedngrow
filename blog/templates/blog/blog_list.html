@@ -1,4 +1,5 @@
 {% extends "blog/base.html" %}
+{% block title %}<title>Posts list</title>{% endblock title %}
 {% block content %}
 <section class="text-blueGray-700">
   <p class="text-medium font-bold mx-auto text-center text-gray-600">All Posts</p>
@@ -13,11 +14,11 @@
       {% endfor %}
         </div>
   <div class="mt-2">
-      <a class="text-2xl text-gray-700 font-bold hover:text-gray-600" href="{%url 'blog_detail' post.pk%}">{{post.title}}</a>
+      <a class="text-2xl text-gray-700 font-bold hover:text-gray-600" href="{% url 'blog_detail' post.slug %}">{{post.title}}</a>
       <p class="mt-2 text-gray-600">{{post.body|safe|truncatewords:50}}</p>
   </div>
   <div class="flex justify-between items-center mt-4">
-      <a class="text-blue-600 hover:underline" href="{% url 'blog_detail' post.pk%}">Read more</a>
+      <a class="text-blue-600 hover:underline" href="{{blog.get_absolute_url}}">Read more</a>
 
       <div class="flex flex-wrap justify-starts items-center mt-4">
         {% for tag in post.tags.all %}

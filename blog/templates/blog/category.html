@@ -1,4 +1,21 @@
 {% extends "blog/base.html" %}
+{% block head %}
+<meta name="description" property="og:description" content="{{category.category_description}}">
+<meta name="keywords" content="{{category.category_name|split}}">
+<meta name="author" content="HeednGrow">
+
+<meta property="og:url" content="{% url 'category.get_absolute_url' %}" />
+<meta property="og:title" content="{{category.title}}" />
+<meta property="og:image" content="{{category.image}}" />
+<meta property="og:image:alt" content="{{category.category_name}} />
+
+<meta name="twitter:image" content="{{category.image}}" />
+<meta property="twitter:image:alt" content="{{category.category_name}}" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@HeednGrow" />
+
+{% endblock head %}
+{% block title %}<title>{{category.category_name}} posts</title>{% endblock title %}
 {% block content %}
   <section class="text-blueGray-700 ">
   <div class="container flex flex-col px-5 py-8 mx-auto lg:items-center">

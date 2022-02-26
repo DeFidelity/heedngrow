@@ -1,4 +1,21 @@
 {% extends "blog/base.html" %}
+{% block head %}
+<meta name="description" property="og:description" content="{{profile.bio}}">
+<meta name="keywords" content="{{profile.name}}">
+<meta name="author" content="{{profile.name}}">
+
+<meta property="og:url" content="{% url 'profile.get_absolute_url' %}" />
+<meta property="og:title" content="{{profile.name}}" />
+<meta property="og:image" content="{{profile.avi}}" />
+<meta property="og:image:alt" content="{{profile.name}}" />
+
+<meta name="twitter:image" content="{{profile.avi}}" />
+<meta property="twitter:image:alt" content="{{profile.user}}" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@{{profile.name}}" />
+
+{% endblock head %}
+{% block title %}{{profile.name}}' profile</title>{% endblock title %}
 {% block content %}
 <section class="text-blueGray-700 ">
 <div class="p-4">
