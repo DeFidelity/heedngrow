@@ -1,12 +1,10 @@
-from enum import unique
-from tkinter import N
+from django.utils.text import slugify
 from django.db import models
 from django.contrib.auth.models import User
 from django.urls import reverse
 from django.utils import timezone
 from ckeditor.fields import RichTextField
 from django.db.models.signals import post_save
-from autoslug import AutoSlugField
 from django.dispatch import receiver
 
 
@@ -20,9 +18,13 @@ class Post(models.Model):
     image = models.ImageField(upload_to='media/posts/',blank=True,null=True)
     tags = models.ManyToManyField('Tags',blank=True,related_name='tags')
     likes = models.ManyToManyField(User,blank=True,related_name='likes')
-    slug = AutoSlugField(populate_from='title',unique=True)
+    slug = models.SlugField(max_length=100,unique=True,blank=True)
     updated = models.DateTimeField(auto_now_add=True)
     
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.title)
+        super(Post, self).save(*args, **kwargs)
+        
     def get_absolute_url(self):
         return reverse('blog_detail',args=[self.slug])
 
@@ -59,7 +61,6 @@ class Comment(models.Model):
     author = models.CharField(max_length=40)
     body = models.TextField()
     tags = models.ManyToManyField('Tags',related_name='comment_tags',)
-    avi = models.ImageField(upload_to='media/profile/',null=True)
     created_date = models.DateTimeField(default=timezone.now)
     parent = models.ForeignKey('self',on_delete=models.CASCADE,blank=True,null=True,related_name='+')
 

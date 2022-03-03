@@ -22,4 +22,3 @@ urlpatterns=[
     path('about-us/',AboutUsView.as_view(),name='about'),
     path('profile/<str:pk>/',AuthorProfileView.as_view(),name='profile')
 ]
-
