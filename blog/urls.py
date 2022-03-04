@@ -5,6 +5,8 @@ from .views import (IndexView,BlogList,BlogDetail,
                     CategoriesListView,AboutUsView,
                     CategoryDetailView,AuthorProfileView,
                     CommentReplyView,ContactView,ContactTemplate)
+
+
 urlpatterns=[
     path('',IndexView.as_view(),name='home_page'),
     path('blogs/all/',BlogList.as_view(),name='blog_list'),
