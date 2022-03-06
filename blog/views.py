@@ -144,7 +144,8 @@ class ExploreTagView(View):
         query = self.request.GET.get('tag_query')
         tag = Tags.objects.filter(tag_name=query).first()
         tags = Tags.objects.all()
-
+         
+        posts = None
         if tags:
             posts = Post.objects.filter(tags__in =[tag])
         context ={
@@ -158,25 +159,24 @@ class ExploreTagView(View):
 
     def post(self,request,*args,**kwargs):
         explore_form = self.request.POST.get('tag_query')
-        if explore_form.is_valid():
-            query = explore_form.cleaned_data['tag_query']
-            tag = Tags.objects.filter(name=query).first()
+    
+        tag = Tags.objects.filter(tag_name=explore_form)
 
-            posts = None
-            if tag:
-                posts = Post.objects.filter(tags__in=[tag])
+        posts = None
+        if tag:
+            posts = Post.objects.filter(tags__in=[tag])
 
-            if posts:
-                context = {
-                    'tags':tag,
-                    'posts':posts
-                }
-            else:
-                context = {
-                    'tags':tag
-                }
-            return HttpResponseRedirect('/blog/tags?query={query}')
-        return HttpResponseRedirect('blog/tags')
+        if posts:
+            context = {
+                'tags':tag,
+                'posts':posts
+            }
+        else:
+            context = {
+                'tags':tag
+            }
+        return HttpResponseRedirect(f'/blog/tags?tag_query={explore_form}')
+    
 class CategoriesListView(ListView):
     context_object_name = 'categories'
     model = Categories

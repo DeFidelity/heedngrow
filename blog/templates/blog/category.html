@@ -1,10 +1,10 @@
 {% extends "blog/base.html" %}
 {% block head %}
 <meta name="description" property="og:description" content="{{category.category_description}}">
-<meta name="keywords" content="{{category.category_name|split}}">
+<meta name="keywords" content="{{category.category_name}}">
 <meta name="author" content="HeednGrow">
 
-<meta property="og:url" content="{% url 'category.get_absolute_url' %}" />
+<meta property="og:url" content="{{category.get_absolute_url}}" />
 <meta property="og:title" content="{{category.title}}" />
 <meta property="og:image" content="{{category.image}}" />
 <meta property="og:image:alt" content="{{category.category_name}} />

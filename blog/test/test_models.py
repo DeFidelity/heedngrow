@@ -66,7 +66,7 @@ class TestModelMethods(TestCase):
         self.assertEqual(str(self.category.category_name),"new category")
         
     def test_category_get_absolute_url_method(self):
-        self.assertEqual(self.category.get_absolute_url(),reverse('category_detail',args=[self.category.category_name]))
+        self.assertEqual(self.category.get_absolute_url,reverse('category_detail',args=[self.category.category_name]))
         
     def test_tags_str_method(self):
         self.assertEqual(str(self.tag.tag_name),'this tag')
@@ -86,7 +86,7 @@ class TestModelMethods(TestCase):
         self.assertEqual(self.author.profile.num_of_post(self.author),2)
         
     def test_profile_get_absolute_url_method(self):
-        self.assertEqual(self.profile.get_absolute_url(),reverse('profile',args=[self.author]))
+        self.assertEqual(self.profile.get_absolute_url,reverse('profile',args=[self.author]))
         
     def test_profile_user_posts_method(self):
         self.assertEqual(self.profile.posts(self.author).count(),2)

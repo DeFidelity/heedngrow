@@ -4,7 +4,7 @@
 <meta name="keywords" content="{{profile.name}}">
 <meta name="author" content="{{profile.name}}">
 
-<meta property="og:url" content="{% url 'profile.get_absolute_url' %}" />
+<meta property="og:url" content="{{profile.get_absolute_url}}" />
 <meta property="og:title" content="{{profile.name}}" />
 <meta property="og:image" content="{{profile.avi}}" />
 <meta property="og:image:alt" content="{{profile.name}}" />

@@ -45,8 +45,10 @@ class Categories(models.Model):
     class Meta:
         ordering =['created_date']
 
+    @property
     def get_absolute_url(self):
         return reverse('category_detail',args=[self.category_name])
+    
     def __str__(self):
         return self.category_name
 
@@ -100,7 +102,7 @@ class Profile(models.Model):
         posts = Post.objects.filter(author=user).all()
         n = len(posts)
         return n
-
+    @property
     def get_absolute_url(self):
         return reverse('profile',args=[self.user])
         
