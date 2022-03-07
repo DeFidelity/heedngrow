@@ -57,12 +57,12 @@ class TestViews(TestCase):
         self.assertEqual(response.status_code,200)
         self.assertTemplateUsed('blog/blog_list.html')
         
-    # def test_blog_detail_with_GET(self):
+    def test_blog_detail_with_GET(self):
          
-    #     response = self.client.get(self.blog_detail_url)
+        response = self.client.get(self.blog_detail_url)
         
-    #     self.assertEqual(response.status_code,200)
-    #     self.assertTemplateUsed('blog/detail.html')
+        self.assertEqual(response.status_code,200)
+        self.assertTemplateUsed('blog/detail.html')
         
     def test_blog_detail_with_POST(self):
         
