@@ -66,7 +66,7 @@
 <div class="max-w-4xl px-10  mx-auto text-2xl text-gray-700 mt-4 rounded bg-gray-100">
 
 <!--content body-->
-<div class="prose mt-2 p-8">
+<div class="prose prose-sm prose-stone md:prose-lg lg:prose-xl dark:prose-invert">
     	{{post.body|safe}}
  </div>
 
@@ -77,7 +77,7 @@
 
 <!--related posts-->
 <h2 class="text-2xl mt-10 pt-2 text-gray-500 font-bold border-t border-gray-300 text-center">Other Posts</h2>
-<div class="flex grid h-full grid-cols-12 gap-10 pb-10 mt-8 sm:mt-16">
+<div class="grid h-full grid-cols-12 gap-10 pb-10 mt-8 sm:mt-16">
 <div class="grid grid-cols-12 col-span-12 gap-7 border-b border-gray-300">
   {% for post in related_posts %}
     <div class="flex flex-col items-start col-span-12 overflow-hidden shadow-sm rounded-xl md:col-span-6 lg:col-span-4">
@@ -85,7 +85,7 @@
             <img class="object-cover w-full shadow-sm h-full" src="{{post.image}}">
         </a>
         <div class="relative flex flex-col items-start px-6 bg-white border border-t-0 border-gray-200 py-7 rounded-b-2xl">
-            <div class="bg-purple-500 absolute top-0 -mt-3 flex items-center px-3 py-1.5 leading-none w-auto inline-block rounded-full text-xs font-medium uppercase text-white inline-block">
+            <div class="bg-purple-500 absolute top-0 -mt-3 flex items-center px-3 py-1.5 leading-none w-auto rounded-full text-xs font-medium uppercase text-white">
               {% for category in post.category.all %}
                   <span><a href="{% url 'category_detail' category.pk %}">{{category}}</a></span>
               {% endfor %}

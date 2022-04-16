@@ -22,6 +22,8 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'jazzmin',
+    'blog',
+    
     'django.contrib.sites',
 	'django.contrib.sitemaps',
     'django.contrib.admin',
@@ -30,8 +32,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'blog',
+    
     'ckeditor',
+    'tailwind',
+     'theme',
 ]
 
 SITE_ID = 1
@@ -110,29 +114,63 @@ USE_L10N = True
 
 USE_TZ = True
 
+# TAILWIND SETUP
+INTERNAL_IPS = [
+    "127.0.0.1",
+]
+TAILWIND_APP_NAME = 'theme'
+NPM_BIN_PATH = r"C:\Program Files\nodejs\npm.cmd"
+
+# # Static files (CSS, JavaScript, Images)
+# # https://docs.djangoproject.com/en/3.2/howto/static-files/
+
+# STATIC_URL = '/static/'
+# STATICFILES_DIR = [BASE_DIR,'static']
+
+# MEDIA_URL = '/media/'
+# MEDIA_ROOT = [BASE_DIR,'media']
+
+# S3 configuration
+
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3StaticStorage'
+
+AWS_ACCESS_KEY_ID = 'AKIAUWD3QIEWXMYEIKXC'
+
+AWS_SECRET_ACCESS_KEY = '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'
+
+AWS_STORAGE_BUCKET_NAME = 'heedngrow2'
+
+AWS_QUERYSTRING_AUTH = False
+
+AWS_S3_CUSTOM_DOMAIN = f"{AWS_STORAGE_BUCKET_NAME}.s3.amazon.com"
+
+AWS_DEFAULT_ACL = "public-read"
+
+AWS_S3_OBJECT_PARAMETERS = {
+    'CacheControl': 'max-age=86400'
+}
+
+AWS_LOCATION = 'static'
+
+AWS_HEADERS={
+    'Access-Control-Allow-Origin':'',
+}
+
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
-STATIC_URL = '/static/'
-STATICFILES_DIR = [BASE_DIR,'static']
+# STATIC_URL = '/static/'
+STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/static/'
+STATIC_ROOT = Path(BASE_DIR,'staticfiles')
+STATICFILES_DIRS = [Path(BASE_DIR,'static')]
 
-MEDIA_URL = '/media/'
-MEDIA_ROOT = [BASE_DIR,'media']
-
-
+# MEDIA_URL = '/media/'
+MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/media/'
+MEDIA_ROOT = Path(BASE_DIR,'media')
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-
-# DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-
-# AWS_S3_ACCESS_KEY_ID 
-
-# AWS_S3_SECRET_ACCESS_KEY
-
-# AWS_STORAGE_BUCKET_NAME
-
-# AWS_QUERYSTRING_AUTH = False
