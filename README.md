@@ -1,5 +1,5 @@
 # heedngrow
-A complex Django Blog project.
+A django content managing and showcasing system, with a fully functioning blog and more.
 
 ### Homepage screenshot
 ![Screenshot 2022-02-20 080815](https://user-images.githubusercontent.com/68183305/154832688-411c69fb-15bd-47fe-b14e-60305336da59.png)
