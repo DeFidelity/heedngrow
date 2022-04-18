@@ -1,49 +1,61 @@
 {% extends "blog/base.html" %}
-{% block title %}<title>Explore Tags</title>{% endblock title %}
+{% block title %}
+    <title>Explore Tags</title>
+{% endblock title %}
 {% block content %}
-
-<p class="text-medium font-bold mx-auto text-center text-gray-600">All Tags</p>
-<form action="{% url 'tag'%}" method="GET">
-<div class="flex flex-wrap justify-center items-center mt-4">
-  {% for tag in tags%}
-  <div class="text-sm justify-center py-2 px-4  font-thin mx-4 text-white text-center justify-center rounded bg-purple-500">
-    {{tag}}
-  </div>
-  {% endfor %}
-</div>
-
-{% if posts %}
-  <p class="text-medium my-8 font-bold mx-auto text-center text-gray-600">Explore Posts tagged with "{{tag}}" below</p>
-{% endif %}
-
-{% for post in posts %}
-<div class="mt-6">
-    <div class="max-w-4xl px-10 py-6 mx-auto bg-white rounded-lg shadow-md">
-        <div class="flex items-center justify-between"><span class="font-light text-gray-600">{{post.created_date}}</span><a href="{% url 'categories' %}"
-                class="px-2 py-1 font-bold text-gray-100 bg-purple-600 rounded hover:bg-purple-500">{{tag}}</a>
+    <p class="text-medium font-bold mx-auto text-center text-gray-600">
+        All Tags
+    </p>
+    <form action="{% url 'tag' %}" method="GET">
+        <div class="flex flex-wrap justify-center items-center mt-4">
+            {% for tag in tags %}
+                <div class="text-sm justify-center py-2 px-4  font-thin mx-4 text-white text-center rounded bg-purple-500">
+                    {{ tag }}
+                </div>
+            {% endfor %}
         </div>
-        <div class="mt-2"><a href="{% url 'blog_detail' post.pk %}"
-                class="text-2xl font-bold text-gray-700 hover:underline">{{post.title}}</a>
-            <p class="mt-2 text-gray-600">{{post.body|safe|truncatewords:30}}</p>
-        </div>
-        <div class="flex items-center justify-between mt-4"><a href="{% url 'blog_detail' post.pk %}"
-                class="text-blue-500 hover:underline">Read more</a>
-            <div><a href="{% url 'profile' post.author.profile.pk %}" class="flex items-center"><img
-                        src="{{post.author.profile.avi}}"
-                        alt="avatar" class="hidden object-cover w-10 h-10 mx-4 rounded-full sm:block">
-                    <h1 class="font-bold text-gray-700 hover:underline">{{post.author.profile.name}}</h1>
-                </a></div>
-        </div>
-    </div>
-</div>
-{% empty %}
-
-<p class="text-medium my-8 font-bold mx-auto text-center text-gray-600">There is no post tagged with {% if tag %} "{{tag}}" {% else %} "{{query}}" {% endif %}</p>
-
-
-{% endfor %}
-
-
-
-
-{% endblock content %}
+        {% if posts %}
+            <p class="text-medium my-8 font-bold mx-auto text-center text-gray-600">
+                Explore Posts tagged with "{{ tag }}" below
+            </p>
+        {% endif %}
+        {% for post in posts %}
+            <div class="mt-6">
+                <div class="max-w-4xl px-10 py-6 mx-auto bg-white rounded-lg shadow-md">
+                    <div class="flex items-center justify-between">
+                        <span class="font-light text-gray-600">{{ post.created_date }}</span><a href="{% url 'categories' %}"
+   class="px-2 py-1 font-bold text-gray-100 bg-purple-600 rounded hover:bg-purple-500">{{ tag }}</a>
+                    </div>
+                    <div class="mt-2">
+                        <a href="{% url 'blog_detail' post.pk %}"
+                           class="text-2xl font-bold text-gray-700 hover:underline">{{ post.title }}</a>
+                        <p class="mt-2 text-gray-600">
+                            {{ post.body|safe|truncatewords:30 }}
+                        </p>
+                    </div>
+                    <div class="flex items-center justify-between mt-4">
+                        <a href="{% url 'blog_detail' post.pk %}"
+                           class="text-blue-500 hover:underline">Read more</a>
+                        <div>
+                            <a href="{% url 'profile' post.author.profile.pk %}"
+                               class="flex items-center">
+                                <img src="{{ post.author.profile.avi }}"
+                                     alt="avatar"
+                                     class="hidden object-cover w-10 h-10 mx-4 rounded-full sm:block">
+                                <h1 class="font-bold text-gray-700 hover:underline">{{ post.author.profile.name }}</h1>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% empty %}
+            <p class="text-medium my-8 font-bold mx-auto text-center text-gray-600">
+                There is no post tagged with
+                {% if tag %}
+                    "{{ tag }}"
+                {% else %}
+                    "{{ query }}"
+                {% endif %}
+            </p>
+        {% endfor %}
+    {% endblock content %}

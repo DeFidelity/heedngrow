@@ -2,25 +2,27 @@
 {% load tailwind_tags %}
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-  <head>
-    <script src="https://unpkg.com/htmx.org@1.6.0"></script>
-    <meta charset="utf-8">
-    {% tailwind_css %}
-    {% block head %}{% endblock head %}
-    {% block title %}<title>Heedngrow: World blog</title>{% endblock title %}
-  </head>
-  <body>
-      {% include "blog/partials/nav.html" %}
-    <main class="dark:bg-gray-800 bg-white relative ">
-
-    {% block content %}{% endblock content %}
-
-    {% include "blog/partials/pop_contact.html" %}
-    <div class="flex flex-col my-8 space-y-3 sm:space-y-0 sm:flex-row sm:justify-center sm:-mx-2">
-      {% include "blog/partials/tag_form.html" %}
-    </div>
-    </main>
-    {% include "blog/partials/footer.html" %}
-    <script type="text/javascript" src="{% static 'script.js' %}"></script>
-  </body>
+    <head>
+        <script src="https://unpkg.com/htmx.org@1.6.0"></script>
+        <meta charset="utf-8">
+        {% tailwind_css %}
+        {% block head %}
+        {% endblock head %}
+        {% block title %}
+            <title>Heedngrow: World blog</title>
+        {% endblock title %}
+    </head>
+    <body>
+        {% include "blog/partials/nav.html" %}
+        <main class="dark:bg-gray-800 bg-white relative ">
+            {% block content %}
+            {% endblock content %}
+            {% include "blog/partials/pop_contact.html" %}
+            <div class="flex flex-col my-8 space-y-3 sm:space-y-0 sm:flex-row sm:justify-center sm:-mx-2">
+                {% include "blog/partials/tag_form.html" %}
+            </div>
+        </main>
+        {% include "blog/partials/footer.html" %}
+        <script type="text/javascript" src="{% static 'script.js' %}"></script>
+    </body>
 </html>
