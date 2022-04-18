@@ -3,7 +3,8 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.urls import reverse
 from django.utils import timezone
-from ckeditor.fields import RichTextField
+from ckeditor.fields import RichTextField, CKEditorWidget
+from ckeditor_uploader.fields import RichTextUploadingField
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 
@@ -13,7 +14,7 @@ class Post(models.Model):
     description = models.TextField()
     title = models.CharField(max_length=200)
     created_date = models.DateTimeField(blank=True,default=timezone.now)
-    body = RichTextField()
+    body = RichTextUploadingField()
     category = models.ManyToManyField('Categories',blank=True)
     image = models.ImageField(upload_to='media/posts/',blank=True,null=True)
     tags = models.ManyToManyField('Tags',blank=True,related_name='tags')
@@ -38,7 +39,7 @@ class Post(models.Model):
 class Categories(models.Model):
     category_name = models.CharField(max_length=150,primary_key=True)
     category_title = models.CharField(max_length=150)
-    category_description = models.TextField()
+    category_description = RichTextField()
     created_date = models.DateTimeField(default=timezone.now)
     category_image = models.ImageField(upload_to='media/category/',null=True)
     updated = models.DateTimeField(auto_now_add=True)
@@ -92,7 +93,7 @@ class NewsLetter(models.Model):
 
 class Profile(models.Model):
     user = models.OneToOneField(User, primary_key=True, verbose_name='user',related_name='profile',on_delete=models.CASCADE)
-    name = models.CharField(max_length=100,null=True,blank=True)
+    name = models.CharField(max_length=100,null=True,blank=True,unique=True)
     avi = models.ImageField(upload_to="media/profile/",null=True)
     proffession = models.CharField(max_length=150,null=True,blank=True,default='Writter')
     bio = models.CharField(max_length=300, null=True,blank=True)
