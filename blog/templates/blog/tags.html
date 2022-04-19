@@ -37,7 +37,7 @@
                         <a href="{% url 'blog_detail' post.pk %}"
                            class="text-blue-500 hover:underline">Read more</a>
                         <div>
-                            <a href="{% url 'profile' post.author.profile.pk %}"
+                            <a href="{% url 'profile' post.author.profile.slug %}"
                                class="flex items-center">
                                 <img src="{{ post.author.profile.avi }}"
                                      alt="avatar"

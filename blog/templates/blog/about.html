@@ -33,7 +33,7 @@
                 {% for profile in profiles %}
                     <div class="p-4">
                         <div class="text-center mb-4 opacity-90">
-                            <a href="{% url 'profile' profile.pk %}" class="block relative">
+                            <a href="{% url 'profile' profile.slug %}" class="block relative">
                                 <img alt="profil"
                                      src="{{ profile.avi }}"
                                      class="mx-auto object-cover rounded-full h-40 w-40 "/>

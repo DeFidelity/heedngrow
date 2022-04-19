@@ -93,7 +93,8 @@ class NewsLetter(models.Model):
 
 class Profile(models.Model):
     user = models.OneToOneField(User, primary_key=True, verbose_name='user',related_name='profile',on_delete=models.CASCADE)
-    name = models.CharField(max_length=100,null=True,blank=True,unique=True)
+    full_name = models.CharField(max_length=150,null=True,blank=True,unique=True)
+    slug = models.SlugField(blank=True,unique=True)
     avi = models.ImageField(upload_to="media/profile/",null=True)
     proffession = models.CharField(max_length=150,null=True,blank=True,default='Writter')
     bio = models.CharField(max_length=300, null=True,blank=True)
@@ -103,9 +104,17 @@ class Profile(models.Model):
         posts = Post.objects.filter(author=user).all()
         n = len(posts)
         return n
+    
+    def save(self, *args, **kwargs):
+        try:
+            self.slug = slugify(self.full_name)
+        except:
+            self.slug = slugify(self.user.email)
+        super(Profile, self).save(*args, **kwargs)
+        
     @property
     def get_absolute_url(self):
-        return reverse('profile',args=[self.user])
+        return reverse('profile',args=[self.slug])
         
         
     def posts(self,user):

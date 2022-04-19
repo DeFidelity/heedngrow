@@ -50,7 +50,7 @@
                     </div>
                     <!--author avator-->
                     <div class="font-light text-gray-600">
-                        <a href="{% url 'profile' post.author.profile.pk %}"
+                        <a href="{% url 'profile' post.author.profile.slug %}"
                            class="flex items-center mt-6 mb-6">
                             <img src="{{ post.author.profile.avi }}"
                                  alt="avatar"

@@ -22,5 +22,5 @@ urlpatterns=[
     path('categories/all/',CategoriesListView.as_view(),name='categories'),
     path('category/<str:pk>/',CategoryDetailView.as_view(),name='category_detail'),
     path('about-us/',AboutUsView.as_view(),name='about'),
-    path('profile/<str:pk>/',AuthorProfileView.as_view(),name='profile')
+    path('profile/<slug:slug>/',AuthorProfileView.as_view(),name='profile')
 ]

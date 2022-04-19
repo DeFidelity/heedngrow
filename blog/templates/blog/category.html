@@ -53,7 +53,7 @@
                         </div>
                         <div>
                             <a class="flex items-center"
-                               href="{% url 'profile' post.author.profile.pk %}">
+                               href="{% url 'profile' post.author.profile.slug %}">
                                 <img class="mx-4 w-10 h-10 object-cover rounded-full hidden sm:block"
                                      src="{{ post.author.profile.avi }}"
                                      alt="avatar">

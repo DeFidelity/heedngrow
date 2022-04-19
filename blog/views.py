@@ -207,8 +207,8 @@ class AboutUsView(View):
         return render(request,'blog/about.html',context)
 
 class AuthorProfileView(View):
-    def get(self,request,pk,*args,**kwargs):
-        profile = Profile.objects.get(pk=pk)
+    def get(self,request,slug,*args,**kwargs):
+        profile = Profile.objects.get(slug=slug)
         posts = Post.objects.filter(author=profile.user)
 
         context ={

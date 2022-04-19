@@ -1,13 +1,13 @@
 <div class="bg-white rounded-lg p-6">
     <div class="flex items-center space-x-6 mb-4">
-        <a href="{% url 'profile' profile.pk %}">
+        <a href="{% url 'profile' profile.slug %}">
             <img class="h-28 w-28 object-cover object-center rounded-full"
                  src="{{ profile.avi }}"
                  alt="{{ profile.name }} picture">
         </a>
         <div>
             <p class="text-xl text-gray-700 font-normal mb-1">
-                <a href="{% url 'profile' profile.pk %}">{{ profile.name }}</a>
+                <a href="{% url 'profile' profile.slug %}">{{ profile.name }}</a>
             </p>
             <p class="text-base text-blue-600 font-normal">
                 {{ profile.proffession }}

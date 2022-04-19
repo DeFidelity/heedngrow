@@ -44,7 +44,7 @@ class PostDisplay(admin.ModelAdmin):
     exclude = ['created_date']
 
 class ProfileDisplay(admin.ModelAdmin):
-    list_display = ['user','name','bio']
+    list_display = ['user','full_name','bio']
 
 
 class CommentDisplay(admin.ModelAdmin):
