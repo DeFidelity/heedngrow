@@ -1,13 +1,14 @@
 from django.utils.text import slugify
 from django.db import models
-from django.contrib.auth.models import User
 from django.urls import reverse
 from django.utils import timezone
 from ckeditor.fields import RichTextField, CKEditorWidget
 from ckeditor_uploader.fields import RichTextUploadingField
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+from django.conf import settings
 
+User = settings.AUTH_USER_MODEL
 
 class Post(models.Model):
     author = models.ForeignKey(User,on_delete=models.CASCADE)
@@ -93,8 +94,6 @@ class NewsLetter(models.Model):
 
 class Profile(models.Model):
     user = models.OneToOneField(User, primary_key=True, verbose_name='user',related_name='profile',on_delete=models.CASCADE)
-    full_name = models.CharField(max_length=150,null=True,blank=True,unique=True)
-    slug = models.SlugField(blank=True,unique=True)
     avi = models.ImageField(upload_to="media/profile/",null=True)
     proffession = models.CharField(max_length=150,null=True,blank=True,default='Writter')
     bio = models.CharField(max_length=300, null=True,blank=True)
@@ -104,13 +103,6 @@ class Profile(models.Model):
         posts = Post.objects.filter(author=user).all()
         n = len(posts)
         return n
-    
-    def save(self, *args, **kwargs):
-        try:
-            self.slug = slugify(self.full_name)
-        except:
-            self.slug = slugify(self.user.email)
-        super(Profile, self).save(*args, **kwargs)
         
     @property
     def get_absolute_url(self):

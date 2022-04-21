@@ -10,6 +10,7 @@ from django.contrib.auth.mixins import UserPassesTestMixin
 from django.contrib import messages
 
 
+
 class IndexView(View):
     def get(self,request,*args,**kwargs):
         posts = Post.objects.all()[:6]

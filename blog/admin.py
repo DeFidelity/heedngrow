@@ -43,9 +43,6 @@ class PostDisplay(admin.ModelAdmin):
     empty_value_display = '--empty--'
     exclude = ['created_date']
 
-class ProfileDisplay(admin.ModelAdmin):
-    list_display = ['user','full_name','bio']
-
 
 class CommentDisplay(admin.ModelAdmin):
     exclude = ['created_date']
@@ -54,7 +51,9 @@ class CommentDisplay(admin.ModelAdmin):
 class ContactDisplay(admin.ModelAdmin):
     list_display = ['name','email','message','created_date']
 
-admin.site.register(Profile,ProfileDisplay)
+
+
+admin.site.register(Profile)
 admin.site.register(Categories, CategoryDisplay)
 admin.site.register(Tags,TagsDisplay)
 admin.site.register(Post,PostDisplay)
